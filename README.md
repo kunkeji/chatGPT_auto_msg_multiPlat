@@ -32,10 +32,8 @@ pip install -r requirements.txt
 python app.py
 ```
 ## 4. 项目演示
-<video width="960" height="540" controls>
-  <source src="https://www.kunkeji.com/video/%E5%A3%B3%E6%9E%97%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+<a href="https://kunkeji.com/index.php/archives/10/">视频演示</a>
 
 ## 5. 项目交流
 微信：kunkeji2021
