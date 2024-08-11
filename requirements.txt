@@ -1,0 +1,7 @@
+PyQt6>=6.7.1
+ttkbootstrap>=1.10.1
+PyAutoGUI>=0.9.54
+pyperclip>=1.9.0
+pywin32>=306
+requests>=2.32.3
+pygame>=2.6.0
