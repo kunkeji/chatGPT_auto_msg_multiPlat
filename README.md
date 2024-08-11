@@ -8,12 +8,20 @@
        除了调用FastGPT接口进行智能问答外，还可以通过关键词匹配的方式对用户的问题进行自动回答。使用的是fuzzywuzzy库
     3. 目前存在问题
 
-
        # **在获取用户信息时采用的是对整个输入框进行全选复制，然后通过正则表达式进行匹配，这种方式存在一定的局限性。目前这个是问题是最大的问题**
 
 ## 2. 项目架构
     略
 ## 3. 项目部署
-    
+    1. 安装依赖
+    ```python
+    pip install -r requirements.txt 
+    ```
+    2. 启动项目
+    ```python
+    python app.py
+    ```
 ## 4. 项目演示
+    {dplayer src="https://www.kunkeji.com/video/%E5%A3%B3%E6%9E%97%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.mp4"/}
 ## 5. 项目交流
+    微信：kunkeji2021
