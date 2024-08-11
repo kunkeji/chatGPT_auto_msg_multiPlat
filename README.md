@@ -12,7 +12,7 @@
 2. 关键词匹配
        除了调用FastGPT接口进行智能问答外，还可以通过关键词匹配的方式对用户的问题进行自动回答。使用的是fuzzywuzzy库，该库可以匹配字符串的相似度。
 3. 支持平台
-    目前千牛已经完全适配，即使获取聊天记录的方式不正确，但是依然可以。
+    目前千牛已经完全适配，即使获取聊天记录的方式不正确，但是依然可以。其次就是拼多多
 
 ## 注意：
 这是目前这个项目遇到的唯一的技术难点
@@ -32,6 +32,10 @@ pip install -r requirements.txt
 python app.py
 ```
 ## 4. 项目演示
-{dplayer src="https://www.kunkeji.com/video/%E5%A3%B3%E6%9E%97%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.mp4"/}
+<video width="960" height="540" controls>
+  <source src="https://www.kunkeji.com/video/%E5%A3%B3%E6%9E%97%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## 5. 项目交流
 微信：kunkeji2021
