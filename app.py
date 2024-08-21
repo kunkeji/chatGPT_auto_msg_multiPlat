@@ -3,7 +3,9 @@
 import sys
 import os
 import logging
+import threading
 
+import src.FlaskApp as FlaskApp
 import src.MainWindow as MainWindow
 from datetime import datetime
 from PyQt6.QtWidgets import QApplication
@@ -34,8 +36,14 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
+def run_app():
+    FlaskApp1 = FlaskApp.FlaskApp()
+    FlaskApp1.run()
+
 # 启动应用
 try:
+    flask_thread = threading.Thread(target=run_app)
+    flask_thread.start()
     # 启动应用
     app = QApplication(sys.argv)
     window = MainWindow.MainWindow()

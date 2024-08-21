@@ -4,6 +4,8 @@ from PyQt6.QtWidgets import QMessageBox,QLineEdit,QMenu,QTableWidget, QWidget,QT
 from PyQt6.QtGui import QIcon,  QCursor,QAction
 from PyQt6.QtCore import Qt, QSize
 
+
+
 from config.const import *
 from config.globals import *
 from ttkbootstrap.constants import *
@@ -201,6 +203,8 @@ class HomePage(QWidget):
    
     def refresh_platform_status(self):
         # global PDD_SELECT, QN_SELECT, DD_SELECT,PDD_APP_HWND, QN_APP_HWND, DD_APP_HWND
+
+        
 
         config.PDD_APP_HWND = win32gui.FindWindow(config.PDD_APP_CLASS_NAME, config.PDD_APP_TITLE)
         config.QN_APP_HWND = win32gui.FindWindow(config.QN_APP_CLASS_NAME, config.QN_APP_TITLE)
