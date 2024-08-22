@@ -42,10 +42,11 @@ logger = logging.getLogger('日志记录器')
 logger.setLevel(logging.INFO)
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self,ws_server):
         super().__init__()
         self.initUI()
         self.m_p = MP.MessageProcessor(self)
+        self.ws_server = ws_server
 
     def initUI(self):
         self.setWindowTitle(config.APP_NAME)
@@ -113,6 +114,9 @@ class MainWindow(QMainWindow):
         self.show()
 
     def handle_button_click(self, label):
+
+        self.ws_server.send_message(None,'123456')
+
         if label == "运行":
             if not config.APP_RUN_STATE:
                 config.APP_RUN_STATE = True

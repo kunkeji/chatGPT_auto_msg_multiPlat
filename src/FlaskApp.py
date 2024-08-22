@@ -1,9 +1,9 @@
 import os
 import ssl
+import threading
 from flask import Flask, send_file
 from flask_sslify import SSLify
-from threading import Lock, Thread
-import time
+from werkzeug.serving import make_server
 
 class FlaskApp:
     def __init__(self):
@@ -13,6 +13,9 @@ class FlaskApp:
         self.hosts_path = r"C:\Windows\System32\drivers\etc\hosts"
         self.cert_file = os.path.join(self.run_dir, "./plugins/server.crt")
         self.key_file = os.path.join(self.run_dir, "./plugins/server.key")
+        self.server = None
+        self.server_thread = None
+        self.should_shutdown = threading.Event()
 
         self.add_routes()
 
@@ -33,26 +36,26 @@ class FlaskApp:
     def start_https_server(self):
         context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
         context.load_cert_chain(certfile=self.cert_file, keyfile=self.key_file)
-        try:
-            self.http_thread = Thread(target=lambda: self.app.run(port=443, ssl_context=context))
-            self.http_thread.start()
-            print('服务启动成功')
-            return True
-        except Exception as e:
-            print(f"服务启动失败: {e}")
-            return False
+        self.server = make_server('0.0.0.0', 443, self.app, ssl_context=context)
+
+        while not self.should_shutdown.is_set():
+            self.server.handle_request()
 
     def init_message_listener(self):
-        with Lock():
-            self.modify_hosts()
-            if not os.path.exists(self.cert_file) or not os.path.exists(self.key_file):
-                print("证书文件不存在")
-                return False
-            return self.start_https_server()
+        self.modify_hosts()
+        if not os.path.exists(self.cert_file) or not os.path.exists(self.key_file):
+            print("证书文件不存在")
+            return False
+        self.server_thread = threading.Thread(target=self.start_https_server)
+        self.server_thread.start()
+        return True
 
     def run(self):
         if not self.init_message_listener():
             print("消息监听初始化失败")
-        else:
-            while True:
-                time.sleep(1)
+
+    def shutdown(self):
+        if self.server:
+            print("Shutting down the server...")
+            self.should_shutdown.set()
+            self.server_thread.join()

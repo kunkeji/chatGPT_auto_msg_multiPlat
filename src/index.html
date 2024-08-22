@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>壳林智能客服助手</title>
+</head>
+<body>
+
+<h1>壳林智能客服助手</h1>
+
+<input type="text" id="messageInput" placeholder="输入消息">
+<button onclick="sendMessage()">发送消息</button>
+
+<ul id="messageList"></ul>
+
+<script>
+    var socket = new WebSocket("ws://localhost:8765");
+
+    socket.onopen = function(event) {
+        console.log("WebSocket 已打开");
+        document.getElementById("messageList").innerHTML += "<li>WebSocket 已打开</li>";
+    };
+
+    socket.onmessage = function(event) {
+        console.log("收到消息: " + event.data);
+        document.getElementById("messageList").innerHTML += "<li>" + event.data + "</li>";
+    };
+
+    socket.onclose = function(event) {
+        console.log("WebSocket 已关闭");
+        document.getElementById("messageList").innerHTML += "<li>WebSocket 已关闭</li>";
+    };
+
+    socket.onerror = function(error) {
+        console.log("WebSocket 发生错误: " + error);
+        document.getElementById("messageList").innerHTML += "<li>WebSocket 发生错误: " + error + "</li>";
+    };
+
+    function sendMessage() {
+        var messageInput = document.getElementById("messageInput");
+        var message = messageInput.value;
+        socket.send(message);
+        messageInput.value = "";
+    }
+</script>
+
+</body>
+</html>
