@@ -2,16 +2,21 @@ import threading
 import asyncio
 import websockets
 from websockets import WebSocketServerProtocol
+from PyQt6.QtCore import QCoreApplication
 import uuid
+import json
 
 class WebSocketServer:
-    def __init__(self, host='localhost', port=8765):
+    def __init__(self,dispatcher, host='localhost', port=8765):
         self.host = host
         self.port = port
         self.clients = {}
+        self.dispatcher = dispatcher
         self.loop = asyncio.new_event_loop()
         self.server_thread = threading.Thread(target=self.start_server, args=(self.loop,))
         self.should_shutdown = threading.Event()
+
+
 
     async def register(self, websocket: WebSocketServerProtocol):
         client_id = str(uuid.uuid4())  # Generate a unique ID for the client
@@ -41,7 +46,18 @@ class WebSocketServer:
         client_id = await self.register(websocket)
         try:
             async for message in websocket:
-                print(f"收到消息来自的 {client_id}: {message}")
+                massagedata = {
+                    'client_id':client_id,
+                    'message': message
+                }
+                if isinstance(massagedata, dict):
+                    # 将 dict 转换为 JSON 字符串
+                    massagedata = json.dumps(massagedata)
+                else:
+                    massagedata = massagedata
+                    
+                self.dispatcher.message_received.emit(massagedata)
+                # print(f"收到消息来自的 {client_id}: {message}")
         finally:
             await self.unregister(client_id)
 

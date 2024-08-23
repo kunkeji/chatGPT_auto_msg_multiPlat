@@ -6,9 +6,11 @@ import logging
 import threading
 import src.FlaskApp as FlaskApp
 import src.MainWindow as MainWindow
+
 from datetime import datetime
 from PyQt6.QtWidgets import QApplication
 from src.WebSocketServer import WebSocketServer
+from src.MessageDispatcher import MessageDispatcher
 
 # 创建日志目录
 LOG_DIR = 'log'
@@ -32,6 +34,8 @@ handler = logging.FileHandler(log_filename, encoding='utf-8')
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
+dispatcher = MessageDispatcher()
+
 
 flask_app = None
 ws_server = None
@@ -43,7 +47,7 @@ def run_flask():
 
 def run_websocket():
     global ws_server
-    ws_server = WebSocketServer()
+    ws_server = WebSocketServer(dispatcher)
     ws_server.run()
 # 启动应用
 try:
@@ -56,10 +60,11 @@ try:
     ws_thread.start()
     # 启动应用
     app = QApplication(sys.argv)
-    window = MainWindow.MainWindow(ws_server)
+    window = MainWindow.MainWindow(ws_server,dispatcher)
 
     # 监听主线程的退出信号
     def on_exit():
+        print("主线程退出")
         logger.info("应用正在关闭...")
         if flask_app:
             flask_app.shutdown()  # 关闭Flask服务器

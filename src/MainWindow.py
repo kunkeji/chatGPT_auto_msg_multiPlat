@@ -42,11 +42,19 @@ logger = logging.getLogger('日志记录器')
 logger.setLevel(logging.INFO)
 
 class MainWindow(QMainWindow):
-    def __init__(self,ws_server):
+    def __init__(self,ws_server,dispatcher):
         super().__init__()
         self.initUI()
         self.m_p = MP.MessageProcessor(self)
         self.ws_server = ws_server
+        self.dispatcher = dispatcher
+        
+        self.dispatcher.message_received.connect(self.on_message_received)
+
+    def on_message_received(self, message):
+        # 处理收到的消息
+        print(f"收到消息: {message}")
+        # 可以在页面上更新内容，或者做其他处理
 
     def initUI(self):
         self.setWindowTitle(config.APP_NAME)
