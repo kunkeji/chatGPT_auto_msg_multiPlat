@@ -49,6 +49,19 @@ def run_websocket():
     global ws_server
     ws_server = WebSocketServer(dispatcher)
     ws_server.run()
+
+def on_exit():
+    """ 应用程序退出时触发 """
+    logger.info("应用正在关闭...")
+    if ws_server:
+        ws_server.stop_server()  # 关闭WebSocket服务器
+    if flask_app:
+        flask_app.shutdown()  # 关闭Flask服务器
+    
+    if flask_thread.is_alive():
+        flask_thread.join()  # 等待Flask线程安全关闭
+    if ws_thread.is_alive():
+        ws_thread.join()  # 等待WebSocket线程安全关闭
 # 启动应用
 try:
     # 开启子程序Flask服务
@@ -63,15 +76,7 @@ try:
     window = MainWindow.MainWindow(ws_server,dispatcher)
 
     # 监听主线程的退出信号
-    def on_exit():
-        print("主线程退出")
-        logger.info("应用正在关闭...")
-        if flask_app:
-            flask_app.shutdown()  # 关闭Flask服务器
-        if ws_server:
-            ws_server.stop_server()  # 关闭WebSocket服务器
-        flask_thread.join()  # 等待Flask线程安全关闭
-        ws_thread.join()  # 等待WebSocket线程安全关闭
+    
 
     app.aboutToQuit.connect(on_exit)
     sys.exit(app.exec())

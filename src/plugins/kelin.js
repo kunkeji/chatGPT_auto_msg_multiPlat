@@ -29,7 +29,14 @@ loadjQuery('https://code.jquery.com/jquery-3.5.1.min.js', function() {
     
         socket.onmessage = function(event) {
             console.log("收到消息: " + event.data);
-            document.getElementById("websocketBox").innerHTML += "<li>" + event.data + "</li>";
+            // document.getElementById("websocketBox").innerHTML += "<li>" + event.data + "</li>";
+            window.imsdk.invoke('im.bizutil.ReEdit',{
+                channelType: 2,
+                cid: "2209327685704.1-3420774230.1#11001@cntaobao",
+                text: event.data
+            }).then(function (e) {
+                console.log(e)
+            })
         };
     
         socket.onclose = function(event) {
@@ -43,14 +50,52 @@ loadjQuery('https://code.jquery.com/jquery-3.5.1.min.js', function() {
         };
     
         function sendMessage(data) {
-            socket.send(data);
+            socket.send(JSON.stringify(data));
         }
+
         // 1.监控用户信息
         window.imsdk.on('im.singlemsg.onReceiveNewMsg', (function(e) {
-                console.log("1", e);
-                sendMessage(e)
-            }
-        ))
+            console.log("=======================*******************=================", e);
+                for(var i = 0 ; i<e.length;i++) {
+                    cid = e[i].ccode
+                    window.imsdk.invoke('im.singlemsg.GetLocalHisMsg',{
+                        cid: {ccode: cid },
+                        count: 20,
+                        gohistory: 1
+                    }).then(function(msg){
+                        msgdata = msg.result.msgs
+                        msgdata = msgdata.reverse()
+                        console.log("新消息*************======================*****************",msgdata)
+                        msgdata = msgdata[0]
+                        cidus =msgdata.cid.ccode.split(".")[0]
+                        var data = {
+                            "from": {
+                                "nick":msgdata.toid.nick,
+                                "display": msgdata.toid.display
+                            },
+                            "to":{
+                                "nick":msgdata.fromid.nick,
+                                "display":msgdata.fromid.display
+                            },
+                            "msg":{
+                                "content":msgdata.originalData.text,
+                                "type":msgdata.templateId
+                            }
+                        }
+                        sendMessage(data)
+                    });
+                }
+        }))
+
+        
+        // window.imsdk.invoke('im.bizutil.ReEdit',{
+        //     channelType: 2,
+        //     cid: "2209327685704.1-3420774230.1#11001@cntaobao",
+        //     text: "你是谁"
+        // }).then(function (e) {
+        //     console.log(e)
+        // })
+
         // 2.监控切换用户事件
         // window.imsdk.on('im.uiutil.${dlgname}onConversationChange'.replace(/\${dlgname}/g, ""),  (function(e) {
         //         console.log("2", e);

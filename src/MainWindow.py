@@ -8,6 +8,7 @@ import json
 import pyautogui
 import pyperclip
 import re
+from fuzzywuzzy import process,fuzz
 import src.HomePage as HomePage
 import src.LogPage as LogPage
 import src.SettingsPage as SettingsPage
@@ -40,6 +41,7 @@ STRINGS_TO_REMOVE =[
 # 配置日志记录器
 logger = logging.getLogger('日志记录器')
 logger.setLevel(logging.INFO)
+config = Config()
 
 class MainWindow(QMainWindow):
     def __init__(self,ws_server,dispatcher):
@@ -53,7 +55,22 @@ class MainWindow(QMainWindow):
 
     def on_message_received(self, message):
         # 处理收到的消息
-        print(f"收到消息: {message}")
+        messages = json.loads(message)
+        message_data = json.loads(messages['message'])
+        print(f"收到消息: {message_data}")
+        client_object = message_data['to']['nick']
+        account = message_data['from']['nick']
+        url_protocol = f'aliim:sendmsg?touid=cntaobao{client_object}&uid=cntaobao{account}'
+        os.startfile(url_protocol)
+        msgcon = message_data['msg']['content']
+        with open(config.KEYWORD_FILE, 'r', encoding='utf-8') as f:
+            keywords = json.load(f)
+        matches = process.extractOne(msgcon, keywords.keys(), scorer=fuzz.token_set_ratio)
+        if matches and matches[1] > 80:
+            matched_key = matches[0]
+            matching = keywords[matched_key]
+            self.ws_server.send_message(messages['client_id'],matching)
+    
         # 可以在页面上更新内容，或者做其他处理
 
     def initUI(self):
@@ -122,9 +139,6 @@ class MainWindow(QMainWindow):
         self.show()
 
     def handle_button_click(self, label):
-
-        self.ws_server.send_message(None,'123456')
-
         if label == "运行":
             if not config.APP_RUN_STATE:
                 config.APP_RUN_STATE = True

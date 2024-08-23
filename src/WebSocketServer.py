@@ -50,13 +50,7 @@ class WebSocketServer:
                     'client_id':client_id,
                     'message': message
                 }
-                if isinstance(massagedata, dict):
-                    # 将 dict 转换为 JSON 字符串
-                    massagedata = json.dumps(massagedata)
-                else:
-                    massagedata = massagedata
-                    
-                self.dispatcher.message_received.emit(massagedata)
+                self.dispatcher.message_received.emit(json.dumps(massagedata))
                 # print(f"收到消息来自的 {client_id}: {message}")
         finally:
             await self.unregister(client_id)
@@ -86,6 +80,8 @@ class WebSocketServer:
             asyncio.run_coroutine_threadsafe(self.send_message_to_all(message), self.loop).result()
 
     def stop_server(self):
+        print("WebSocketServer 已关闭")
         self.should_shutdown.set()
         self.loop.call_soon_threadsafe(self.loop.stop)
         self.server_thread.join()
+        
