@@ -34,6 +34,7 @@ handler = logging.FileHandler(log_filename, encoding='utf-8')
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
+
 dispatcher = MessageDispatcher()
 
 

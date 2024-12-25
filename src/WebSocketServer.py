@@ -16,8 +16,6 @@ class WebSocketServer:
         self.server_thread = threading.Thread(target=self.start_server, args=(self.loop,))
         self.should_shutdown = threading.Event()
 
-
-
     async def register(self, websocket: WebSocketServerProtocol):
         client_id = str(uuid.uuid4())  # Generate a unique ID for the client
         self.clients[client_id] = websocket
@@ -54,8 +52,6 @@ class WebSocketServer:
                 # print(f"收到消息来自的 {client_id}: {message}")
         finally:
             await self.unregister(client_id)
-
-
 
     def start_server(self, loop):
         asyncio.set_event_loop(loop)

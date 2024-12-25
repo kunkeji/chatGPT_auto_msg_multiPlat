@@ -95,6 +95,7 @@ class HomePage(QWidget):
         self.keyword_table.itemChanged.connect(self.item_changed)
         # 将表格部件添加到布局中
         layout.addWidget(self.keyword_table)
+        
         # 创建一个新的水平布局用于添加关键词和回复内容
         new_keyword_layout = QHBoxLayout()
         # 创建一个新的关键词输入框

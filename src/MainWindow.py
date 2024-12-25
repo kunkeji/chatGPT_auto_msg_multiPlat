@@ -41,6 +41,7 @@ STRINGS_TO_REMOVE =[
 # 配置日志记录器
 logger = logging.getLogger('日志记录器')
 logger.setLevel(logging.INFO)
+
 config = Config()
 
 class MainWindow(QMainWindow):
@@ -193,8 +194,10 @@ class MainWindow(QMainWindow):
 
     def log_message(self, message):
         logger.info(message)
+
         self.pages['首页'].append_log_message(message)
         self.pages['日志'].append_log_message(message)
+        
     
     def ppd_username(self):
         pyperclip.copy('')
