@@ -105,6 +105,8 @@ python app.py
 - 提交 Issue
 - 发送邮件至：kunkeji@qq.com
 - 访问官方网站：kunkeji.com
+- 微信：kunkeji2021
+
 
 ## 🙏 致谢
 
