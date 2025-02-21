@@ -17,6 +17,7 @@ def doClick(hwnd, cx, cy):
     time.sleep(0.1)
     win32api.PostMessage(hwnd, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, Long_position)
 
+
 def find_child_window(parent_handle, child_window_title, index=1):
     def callback(hwnd, hwnds):
         if win32gui.IsWindowVisible(hwnd) and win32gui.IsWindowEnabled(hwnd):

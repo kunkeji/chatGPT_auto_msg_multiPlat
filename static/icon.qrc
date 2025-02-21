@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>icon/内容.png</file>
+    <file>icon/qianniu.png</file>
+    <file>icon/minganci.png</file>
+    <file>icon/关闭.png</file>
+    <file>icon/关键词.png</file>
+    <file>icon/敏感词.png</file>
+    <file>icon/设置.png</file>
+    <file>icon/首页.png</file>
+    <file>icon/缩小.png</file>
+    <file>icon/我的.png</file>
+    <file>icon/选中圆.png</file>
+    <file>icon/疑问.png</file>
+  </qresource>
+</RCC>

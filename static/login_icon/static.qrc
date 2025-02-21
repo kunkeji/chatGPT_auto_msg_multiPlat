@@ -1,0 +1,91 @@
+<RCC>
+  <qresource prefix="login">
+    <file>rengongzhineng.png</file>
+    <file>imshezhi.png</file>
+    <file>shezhi.png</file>
+    <file>tongyong.png</file>
+    <file>说明书.png</file>
+    <file>naviSensitiveWords.png</file>
+    <file>24gf-pause2 (1).png</file>
+    <file>开始 (1).png</file>
+    <file>denglu.png</file>
+    <file>dengluzhanghao.png</file>
+    <file>erweima.png</file>
+    <file>erweima_1.png</file>
+    <file>guanbi.png</file>
+    <file>guanbi_1.png</file>
+    <file>guanbi_2.png</file>
+    <file>guanjianci.png</file>
+    <file>guanyu.png</file>
+    <file>guanyu_o.png</file>
+    <file>ico.png</file>
+    <file>liaotian.png</file>
+    <file>liaotian_1.png</file>
+    <file>liaotianduihua-xianxing.png</file>
+    <file>mima.png</file>
+    <file>mima_1.png</file>
+    <file>mmxg.png</file>
+    <file>shezhi.png</file>
+    <file>shezhi_1.png</file>
+    <file>shoujihao.png</file>
+    <file>shoujihao_1.png</file>
+    <file>shoujihaoma.png</file>
+    <file>shouye.png</file>
+    <file>shouye_1.png</file>
+    <file>shouye_2.png</file>
+    <file>user.png</file>
+    <file>user_1.png</file>
+    <file>wangjimima.png</file>
+    <file>wangjimima_1.png</file>
+    <file>youxiang.png</file>
+    <file>youxiang_1.png</file>
+    <file>zhanghao.png</file>
+    <file>zhuce.png</file>
+    <file>zuixiaohua.png</file>
+    <file>zuixiaohua_1.png</file>
+    <file>logo.png</file>
+    <file>denglu.png</file>
+    <file>dengluzhanghao.png</file>
+    <file>erweima.png</file>
+    <file>erweima_1.png</file>
+    <file>guanbi.png</file>
+    <file>guanbi_1.png</file>
+    <file>guanbi_2.png</file>
+    <file>ico.png</file>
+    <file>mima.png</file>
+    <file>mima_1.png</file>
+    <file>mmxg.png</file>
+    <file>shoujihao.png</file>
+    <file>shoujihao_1.png</file>
+    <file>shoujihaoma.png</file>
+    <file>wangjimima.png</file>
+    <file>wangjimima_1.png</file>
+    <file>youxiang.png</file>
+    <file>youxiang_1.png</file>
+    <file>zhanghao.png</file>
+    <file>logo.png</file>
+    <file>zhuce.png</file>
+    <file>zuixiaohua.png</file>
+    <file>zuixiaohua_1.png</file>
+  </qresource>
+  <qresource prefix="hover">
+    <file>icon_hover/说明书 (1).png</file>
+    <file>icon_hover/naviSensitiveWords.png</file>
+    <file>icon_hover/24gf-pause2.png</file>
+    <file>icon_hover/开始.png</file>
+    <file>icon_hover/guanjianci.png</file>
+    <file>icon_hover/guanyu.png</file>
+    <file>icon_hover/guanyu_o.png</file>
+    <file>icon_hover/liaotian.png</file>
+    <file>icon_hover/liaotian_1.png</file>
+    <file>icon_hover/liaotianduihua-xianxing.png</file>
+    <file>icon_hover/shezhi.png</file>
+    <file>icon_hover/shezhi_1.png</file>
+    <file>icon_hover/shouye.png</file>
+    <file>icon_hover/shouye_1.png</file>
+    <file>icon_hover/shouye_2.png</file>
+    <file>icon_hover/user.png</file>
+    <file>icon_hover/user_1.png</file>
+  </qresource>
+  <qresource prefix="icon"/>
+</RCC>
