@@ -37,6 +37,20 @@ pip install -r requirements.txt
 python app.py
 ```
 
+## 🔧 使用说明
+https://github.com/kunkeji/chatGPT_auto_msg_multiPlat/issues/1
+
+## 测试账号
+账号：admin
+密码：123456
+最好自己注册账号，测试账号仅供测试使用。
+
+注意，采用单账号登录，请勿多人共用账号。测试完成后请注册账号，可以联系我获取权限。
+
+
+
+
+
 ## 📦 主要功能
 
 - **用户管理**
