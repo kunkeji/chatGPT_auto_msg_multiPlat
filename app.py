@@ -175,6 +175,8 @@ class LoginWindow(QMainWindow):
         # 打开指定网址
         webbrowser.open('https://kelin.kunkeji.com/index/user/login.html')
 
+
+# 这里进行js注入工作，注入的js文件可以自行编写，也可以使用我们提供的kelin.js文件
 # 监听服务
 class FlaskApp:
     def __init__(self,userinfo):
