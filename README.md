@@ -47,7 +47,48 @@ https://github.com/kunkeji/chatGPT_auto_msg_multiPlat/issues/1
 
 注意，采用单账号登录，请勿多人共用账号。测试完成后请注册账号，可以联系我获取权限。
 
+ 
+## 📦 打包指南
 
+使用 auto-py-to-exe 工具打包时推荐配置：
+
+1. 基础设置：
+   - 脚本路径：`app.py`
+   - 单文件打包：❌ 不勾选（推荐目录模式）
+   - 控制台窗口：✅ 勾选（方便调试）
+
+2. 附加文件：
+   ```bash
+   data;data/
+   src;src/
+   static;static/
+   ```
+
+3. 图标设置：
+   - 使用项目根目录的 `logo.ico`
+
+4. 高级配置：
+   - 添加参数：`--noconfirm --clean`
+   - 排除模块：`PyQt5,PyQt6`
+
+5. 版本信息（可选）：
+   - 产品名称：壳林智能客服
+   - 申请管理员权限：✅ 勾选
+
+安装打包工具：
+
+```bash
+pip install auto-py-to-exe
+```
+
+命令行打包方式（替代方案）：
+```bash
+
+pyinstaller app.py --noconsole --onefile --icon=logo.ico --add-data "data;data" --add-data "src;src" --add-data "static;static" --exclude-module PyQt5 --exclude-module PyQt6
+
+```
+
+打包后文件位于 `./dist` 目录，首次启动可能需要10-30秒初始化时间。若杀毒软件误报，请添加白名单。
 
 
 
