@@ -381,21 +381,21 @@ class HomeWindow(QMainWindow):
             self.worker_threads.append(worker)
 
         # 添加拼多多客服按钮
-        # self.ui.pdd_button = QPushButton("拼多多客服", self)
-        # self.ui.pdd_button.setStyleSheet("""
-        #     QPushButton {
-        #         background-color: #E02020;
-        #         color: white;
-        #         border-radius: 4px;
-        #         padding: 5px 15px;
-        #         font-size: 14px;
-        #     }
-        #     QPushButton:hover {
-        #         background-color: #FF2020;
-        #     }
-        # """)
-        # self.ui.pdd_button.clicked.connect(self.open_pdd_window)
-        # self.ui.horizontalLayout.addWidget(self.ui.pdd_button)
+        self.ui.pdd_button = QPushButton("拼", self)
+        self.ui.pdd_button.setStyleSheet("""
+            QPushButton {
+                background-color: #E02020;
+                color: white;
+                border-radius: 4px;
+                padding: 5px 15px;
+                font-size: 14px;
+            }
+            QPushButton:hover {
+                background-color: #FF2020;
+            }
+        """)
+        self.ui.pdd_button.clicked.connect(self.open_pdd_window)
+        self.ui.horizontalLayout.addWidget(self.ui.pdd_button)
         
         # 初始化浏览器窗口和测试服务器
         self.browser_window = None
