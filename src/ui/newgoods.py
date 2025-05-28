@@ -142,7 +142,7 @@ class Ui_MainWindow(object):
         self.goodsname.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u5546\u54c1\u540d\u79f0\u9700\u4e0e\u94fe\u63a5\u5546\u54c1\u540d\u79f0\u4e00\u81f4", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u5546\u54c1\u540d\u79f0\uff1a", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u5e97\u94fa\u540d\u79f0\uff1a", None))
-        self.welcome.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.welcome.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"https://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"

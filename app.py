@@ -120,7 +120,7 @@ class LoginWindow(QMainWindow):
             self.db.update_system_info(account=username)
             self.db.update_system_info(password=password)
         # 发起API请求
-        response = requests.post('http://kelin.kunkeji.com/api/user/login', data=data)
+        response = requests.post('https://kelin.kunkeji.com/api/user/login', data=data)
         # 处理响应
         if response.status_code == 200:
             # 假设登录成功时，返回的JSON数据中有一个'success'字段为True
@@ -598,7 +598,7 @@ class HomeWindow(QMainWindow):
 
     # 退出登录
     def logout(self, event):
-        apiurl = 'http://kelin.kunkeji.com/api/user/logout'
+        apiurl = 'https://kelin.kunkeji.com/api/user/logout'
         token = self.system_info[11]
         headers = {'token': f'{token}'}
         r = requests.post(apiurl, headers=headers)
